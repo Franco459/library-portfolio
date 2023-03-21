@@ -1,0 +1,8 @@
+#noAcc{
+    color: rgb(0, 0, 99);
+    font-weight: 400;
+    text-decoration: underline;
+}
+#noAcc:hover{
+    cursor: pointer;
+}

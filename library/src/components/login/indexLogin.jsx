@@ -1,19 +1,22 @@
 import './indexLogin.css'
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Form from './formLogin';
+import background from './img/library-bg.png'
 
-function indexLogin(){
-    function show() {
-        alert('Hello!');
-    }
+function indexLogin() {
     return (
-    <div>
-        <form id="form" action="">
-            <input id="input" autocomplete="off" placeholder="Nombre de usuario" /><br />
-            <input id="input" autocomplete="off" placeholder="Contraseña" /><br />
-            <button>Send</button> <br />
-            <p id='noAcc' onClick={show}>No tengo cuenta</p>
-        </form>
-    </div>
+        <section id='background' style={{
+            backgroundImage: `url(${background})`,
+            width: '100vw',
+            height: '101.0365vh',
+            backgroundSize: "cover",
+            backgroundRepeat: 'no-repeat',
+            marginTop: '-15%'
+        }}>
+            <center>
+                <Form></Form>
+            </center>
+        </section>
     )
 }
 

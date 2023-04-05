@@ -9,6 +9,10 @@ const AdminsSchema = Schema({
         type: String,
         required: true
     },
+    username: {
+        type: String,
+        required: true
+    },
     telephone: {
         type: String,
         required: true

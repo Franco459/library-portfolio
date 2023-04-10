@@ -5,7 +5,7 @@ const dbConnection = dbData();
 
 const getAdmins = async (req, res = response) => {
     //instruccion SQL
-    let sqlQuery = "SELECT * FROM administradores"
+    let sqlQuery = "SELECT * FROM admins"
     dbConnection.query(sqlQuery, (err, results) => {
         if (err) console.log(err);
         if (results.length > 0) {
@@ -24,10 +24,10 @@ const getAdmins = async (req, res = response) => {
 
 const removeAdmin = async (req, res = response) => {
     let adminID = req.body.id;
-    let sqlQuery = `DELETE FROM administradores WHERE id = ${adminID}`
+    let sqlQuery = `DELETE FROM admins WHERE id = ${adminID}`
     dbConnection.query(sqlQuery, (err, results) =>{
         if (err) console.log(err);
-        if (results.length > 0){
+        if (results.affectedRows > 0){
             res.status(200).send({
                 message: "Administrador eliminado",
                 data: results
@@ -50,7 +50,7 @@ const updateAdmin = async (req, res = response) => {
     let adminPassword = req.body.password;
     let adminEmail = req.body.email;
 
-    let sqlQuery = `UPDATE administradores SET name = ${adminName}, surname = ${adminSurname}, username = ${adminUsername}, telephone = ${adminTelephone}, email = ${adminEmail} WHERE id = ${adminID}`;
+    let sqlQuery = `UPDATE admins SET name = '${adminName}', surname = '${adminSurname}', username = '${adminUsername}', telephone = '${adminTelephone}', email = '${adminEmail}' WHERE id = ${adminID}`;
 
     dbConnection.query(sqlQuery,(err, results) =>{
         if(err) console.log(err);
@@ -76,7 +76,7 @@ const createAdmin = (req, res = response) =>{
     let adminPassword = req.body.password;
     let adminEmail = req.body.email;
     
-    let sqlQuery = `INSERT INTO administradores (name, surname, username, telephone, password, email)
+    let sqlQuery = `INSERT INTO admins (name, surname, username, telephone, password, email)
                     values ('${adminName}', '${adminSurname}', '${adminUsername}', '${adminTelephone}', '${adminPassword}', '${adminEmail}')`;
 
     dbConnection.query(sqlQuery, (err, results) => {

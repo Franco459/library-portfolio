@@ -11,11 +11,13 @@ const AdminsSchema = Schema({
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     telephone: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
@@ -23,18 +25,18 @@ const AdminsSchema = Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     }
 },
     {
         timestamps: true
     });
 
-AdminsSchema.method('toJSON', function () {
-    const { password, ...object } = this.toObject()//spread operator
-    //no aparece password y mantiene el cuerpo del objeto
-    //object.uid = ID;
-    //asignar alias uid
-    return object;
-});
+AdminsSchema.methods.toJSON = function () {
+    const obj = this.toObject();
+    delete obj.password; // Eliminar la contraseña del objeto JSON
+    return obj;
+};
+
 module.exports = model('Admins', AdminsSchema);
